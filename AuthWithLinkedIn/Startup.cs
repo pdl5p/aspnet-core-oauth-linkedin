@@ -80,20 +80,20 @@ namespace AuthWithLinkedIn
                 ClientId = Configuration["linkedin:clientId"],
                 ClientSecret = Configuration["linkedin:clientSecret"],
 
-                // Set the callback path, so LinkedIn will call back to http://APP_URL/signin-linkedin 
+                // Set the callback path, so LinkedIn will call back to http://APP_URL/signin-linkedin
                 // Also ensure that you have added the URL as an Authorized Redirect URL in your LinkedIn application
                 CallbackPath = new PathString("/signin-linkedin"),
 
-                // Configure the LinkedIn endpoints                
+                // Configure the LinkedIn endpoints
                 AuthorizationEndpoint = "https://www.linkedin.com/oauth/v2/authorization",
                 TokenEndpoint = "https://www.linkedin.com/oauth/v2/accessToken",
                 UserInformationEndpoint = "https://api.linkedin.com/v1/people/~:(id,formatted-name,email-address,picture-url)",
 
                 Scope = { "r_basicprofile", "r_emailaddress" },
 
-                Events = new OAuthEvents
+                /*Events = new OAuthEvents
                 {
-                    // The OnCreatingTicket event is called after the user has been authenticated and the OAuth middleware has 
+                    // The OnCreatingTicket event is called after the user has been authenticated and the OAuth middleware has
                     // created an auth ticket. We need to manually call the UserInformationEndpoint to retrieve the user's information,
                     // parse the resulting JSON to extract the relevant information, and add the correct claims.
                     OnCreatingTicket = async context =>
@@ -139,7 +139,7 @@ namespace AuthWithLinkedIn
                                 context.Options.ClaimsIssuer));
                         }
                     }
-                }
+                }*/
             });
 
             // Listen for requests on the /login path, and issue a challenge to log in with the LinkedIn middleware
